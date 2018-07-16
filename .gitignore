@@ -1,0 +1,25 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Java template
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# IntelliJ exclusions
+.idea/
+back-test.iml
+
+# Eclipse exclusions
+.classpath
+.project
+.settings
