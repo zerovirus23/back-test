@@ -1,38 +1,38 @@
 package co.zero.backtest.configuration;
 
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-
-        http.sessionManagement()
-//            .sessionCreationPolicy(STATELESS)
-            .and()
+        http
             .authorizeRequests()
-            .anyRequest()
-            .authenticated()
-            .antMatchers(GET,"/api/transactions").permitAll()
-            .antMatchers(GET,"/api/transactions/**").permitAll()
-            .antMatchers(GET, "/api/transactions/*/count").hasRole("USER")
+                .antMatchers("/api/transactions").permitAll()
+                .antMatchers("/").hasRole("USER")
+                .anyRequest().authenticated()
             .and()
             .httpBasic();
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-            .withUser("admin").password("123456").roles("USER");
-    }
+    @Bean
+    @Override
+    public UserDetailsService userDetailsService() {
+        UserDetails user = User.withDefaultPasswordEncoder()
+                .username("admin")
+                .password("123456")
+                .roles("USER")
+                .build();
 
+        return new InMemoryUserDetailsManager(user);
+    }
 }
