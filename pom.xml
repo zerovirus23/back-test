@@ -7,7 +7,7 @@
     <groupId>co.zero</groupId>
     <artifactId>back-test</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <!-- Configuration properties -->
@@ -23,6 +23,7 @@
         <servlet.api.version>4.0.0</servlet.api.version>
         <apache.commons.version>3.7</apache.commons.version>
         <modelMapper.version>1.5.2</modelMapper.version>
+        <tomcat.version>8.5.23</tomcat.version>
     </properties>
 
     <developers>
@@ -104,6 +105,28 @@
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-catalina</artifactId>
+            <version>${tomcat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>${tomcat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <version>${tomcat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jasper</artifactId>
+            <version>${tomcat.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -121,6 +144,29 @@
                         <configuration>
                             <failOnMissingWebXml>false</failOnMissingWebXml>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>appassembler-maven-plugin</artifactId>
+                <version>2.0.0</version>
+                <configuration>
+                    <assembleDirectory>target/back-test</assembleDirectory>
+                    <programs>
+                        <program>
+                            <mainClass>co.zero.backtest.configuration.TomcatConfiguration</mainClass>
+                            <name>webapp</name>
+                        </program>
+                    </programs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>assemble</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>

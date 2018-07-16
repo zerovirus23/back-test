@@ -18,7 +18,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
                 .antMatchers("/api/transactions").permitAll()
-                .antMatchers("/").hasRole("USER")
+                .antMatchers("/api/transactions/*").hasRole("USER")
+                .anyRequest().permitAll()
                 .anyRequest().authenticated()
             .and()
             .httpBasic();

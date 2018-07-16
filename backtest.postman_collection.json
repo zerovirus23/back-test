@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "8beba25e-eb13-4019-b10f-335c2ea534eb",
+		"name": "backtest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAllByAccount",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://apisandbox.openbankproject.com/obp/v1.2.1/banks/rbs/accounts/savings-kids-john/public/transactions",
+					"protocol": "https",
+					"host": [
+						"apisandbox",
+						"openbankproject",
+						"com"
+					],
+					"path": [
+						"obp",
+						"v1.2.1",
+						"banks",
+						"rbs",
+						"accounts",
+						"savings-kids-john",
+						"public",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByTransactionType",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://apisandbox.openbankproject.com/obp/v1.2.1/banks/rbs/accounts/savings-kids-john/public/transactions",
+					"protocol": "https",
+					"host": [
+						"apisandbox",
+						"openbankproject",
+						"com"
+					],
+					"path": [
+						"obp",
+						"v1.2.1",
+						"banks",
+						"rbs",
+						"accounts",
+						"savings-kids-john",
+						"public",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -2,7 +2,6 @@ package co.zero.backtest.configuration;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-
 public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     public static final String DEFAULT_SERVLET_MAPPING = "/";
@@ -21,4 +20,5 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
     protected String[] getServletMappings() {
         return new String[]{DEFAULT_SERVLET_MAPPING};
     }
+
 }
